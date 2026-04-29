@@ -52,7 +52,7 @@ export default async function ProjectDetailPage({
       <div className="page-header-grid relative overflow-hidden border-b border-ink-blue/8 pb-12 pt-28">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-12">
           <Link
-            className="inline-flex items-center gap-2 font-mono text-[0.64rem] font-semibold uppercase text-graphite/45 transition-colors hover:text-ink-blue"
+            className="inline-flex items-center gap-2 font-mono text-[0.75rem] font-semibold uppercase text-graphite/45 transition-colors hover:text-ink-blue"
             href="/projects"
           >
             <span aria-hidden="true">&larr;</span>
@@ -62,7 +62,7 @@ export default async function ProjectDetailPage({
       </div>
 
       <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-10 sm:px-8 lg:px-12">
-        <p className="font-mono text-[0.68rem] font-semibold uppercase">
+        <p className="font-mono text-[0.8rem] font-semibold uppercase">
           <span className="rounded-[4px] border border-ink-blue/20 bg-ink-blue/[0.05] px-2 py-0.5 text-ink-blue/80">
             {project.category}
           </span>
@@ -78,7 +78,7 @@ export default async function ProjectDetailPage({
         <div className="mt-8 flex flex-wrap gap-2">
           {project.stack.map((item) => (
             <span
-              className="rounded-[4px] border border-graphite/12 bg-white/60 px-3 py-2 font-mono text-[0.66rem] font-semibold uppercase text-graphite/72 transition-colors hover:border-ink-blue/20 hover:text-ink-blue"
+              className="rounded-[4px] border border-graphite/12 bg-white/60 px-3 py-2 font-mono text-[0.78rem] font-semibold uppercase text-graphite/72 transition-colors hover:border-ink-blue/20 hover:text-ink-blue"
               key={item}
             >
               {item}

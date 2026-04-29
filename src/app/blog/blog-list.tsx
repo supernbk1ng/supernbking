@@ -19,7 +19,7 @@ export function BlogList() {
     <>
       <div className="mt-12 flex flex-wrap gap-3">
         <button
-          className={`rounded-[4px] border px-4 py-2 font-mono text-[0.64rem] font-semibold uppercase transition-colors ${
+          className={`rounded-[4px] border px-4 py-2 font-mono text-[0.75rem] font-semibold uppercase transition-colors ${
             activeCategory === null
               ? "border-ink-blue/50 bg-ink-blue text-white"
               : "border-graphite/12 bg-white text-graphite/56 hover:border-ink-blue/25 hover:text-ink-blue"
@@ -31,7 +31,7 @@ export function BlogList() {
         </button>
         {blogCategories.map((cat) => (
           <button
-            className={`rounded-[4px] border px-4 py-2 font-mono text-[0.64rem] font-semibold uppercase transition-colors ${
+            className={`rounded-[4px] border px-4 py-2 font-mono text-[0.75rem] font-semibold uppercase transition-colors ${
               activeCategory === cat
                 ? "border-ink-blue/50 bg-ink-blue text-white"
                 : "border-graphite/12 bg-white text-graphite/56 hover:border-ink-blue/25 hover:text-ink-blue"
@@ -62,7 +62,7 @@ export function BlogList() {
           ) : (
             <motion.p
               animate={{ opacity: 1 }}
-              className="py-16 text-center font-mono text-xs text-graphite/40"
+              className="py-16 text-center font-mono text-base text-graphite/40"
               initial={{ opacity: 0 }}
             >
               该分类暂无文章

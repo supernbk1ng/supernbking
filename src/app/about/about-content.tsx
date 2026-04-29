@@ -78,17 +78,17 @@ export function AboutContent() {
           <h2 className="font-display text-2xl italic text-graphite">
             Hi, I&rsquo;m supernbking
           </h2>
-          <p className="mt-4 text-sm leading-8 text-graphite/65">
+          <p className="mt-4 text-base leading-8 text-graphite/65">
             CS 专业大三学生，现居校园。对前端工程、AI
             应用和开发者工具充满热情。相信好的工具能让创造变得简单，好的设计能让技术变得温暖。
           </p>
-          <p className="mt-4 text-sm leading-8 text-graphite/65">
+          <p className="mt-4 text-base leading-8 text-graphite/65">
             目前专注于 React / Next.js 技术栈的深度实践，同时探索 AI
             在开发者工具和应用层的落地。课余时间喜欢写博客、整理学习资源、参与开源项目。
           </p>
         </div>
 
-        <div className="space-y-6 font-mono text-xs">
+        <div className="space-y-6 font-mono text-base">
           <div className="flex items-start gap-3">
             <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70">
               Education
@@ -125,7 +125,7 @@ export function AboutContent() {
             <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70">
               Contact
             </span>
-            <span className="space-y-1 pt-1 font-mono text-xs leading-6">
+            <span className="space-y-1 pt-1 font-mono text-base leading-6">
               <a
                 className="block text-graphite/60 underline underline-offset-4 transition-colors hover:text-ink-blue"
                 href="mailto:3230102949@zju.edu.cn"
@@ -162,7 +162,7 @@ export function AboutContent() {
         <div className="mt-5 flex flex-wrap gap-2">
           {skills.map((skill) => (
             <span
-              className="rounded-[4px] border border-graphite/12 bg-white/80 px-3 py-2 font-mono text-[0.66rem] font-semibold uppercase text-graphite/60 transition-colors hover:border-ink-blue/25 hover:text-ink-blue"
+              className="rounded-[4px] border border-graphite/12 bg-white/80 px-3 py-2 font-mono text-[0.78rem] font-semibold uppercase text-graphite/60 transition-colors hover:border-ink-blue/25 hover:text-ink-blue"
               key={skill}
             >
               {skill}
@@ -182,7 +182,7 @@ export function AboutContent() {
         <div className="mt-5 flex flex-wrap gap-2">
           {interests.map((interest) => (
             <span
-              className="rounded-[4px] border border-graphite/10 bg-graphite/[0.02] px-3 py-2 font-mono text-[0.66rem] font-medium text-graphite/55"
+              className="rounded-[4px] border border-graphite/10 bg-graphite/[0.02] px-3 py-2 font-mono text-[0.78rem] font-medium text-graphite/55"
               key={interest}
             >
               {interest}
@@ -206,7 +206,7 @@ export function AboutContent() {
 
       <motion.footer
         {...fadeIn}
-        className="mt-24 border-t border-graphite/8 pt-8 font-mono text-[0.64rem] text-graphite/35"
+        className="mt-24 border-t border-graphite/8 pt-8 font-mono text-[0.75rem] text-graphite/35"
         transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
       >
         <p>Built with Next.js, TypeScript, Tailwind CSS &amp; Framer Motion.</p>

@@ -16,7 +16,7 @@ export default function AboutPage() {
 
       <div className="page-header-grid relative overflow-hidden border-b border-ink-blue/8 pb-12 pt-28">
         <div className="mx-auto w-full max-w-5xl px-5 sm:px-8 lg:px-12">
-          <p className="font-mono text-[0.68rem] font-semibold uppercase text-graphite/58">
+          <p className="font-mono text-[0.8rem] font-semibold uppercase text-graphite/58">
             Student Profile
           </p>
           <h1 className="mt-6 font-display text-6xl italic leading-none text-ink-blue sm:text-8xl">

@@ -39,7 +39,7 @@ export function HeroSection() {
 
         <motion.div
           animate={{ opacity: 1, y: 0 }}
-          className="mx-auto mt-9 flex w-full max-w-5xl flex-col gap-6 font-mono text-[0.68rem] font-semibold uppercase text-white/70 sm:mt-12 sm:flex-row sm:items-end sm:justify-between"
+          className="mx-auto mt-9 flex w-full max-w-5xl flex-col gap-6 font-mono text-[0.8rem] font-semibold uppercase text-white/70 sm:mt-12 sm:flex-row sm:items-end sm:justify-between"
           initial={false}
           transition={{ delay: 0.18, duration: 0.55, ease: "easeOut" }}
         >

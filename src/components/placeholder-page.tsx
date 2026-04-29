@@ -12,7 +12,7 @@ export function PlaceholderPage({ eyebrow, title, copy }: PlaceholderPageProps) 
       <SiteHeader variant="light" />
 
       <section className="mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-5 py-28 sm:px-8 lg:px-12">
-        <p className="font-mono text-[0.68rem] font-semibold uppercase text-graphite/58">
+        <p className="font-mono text-[0.8rem] font-semibold uppercase text-graphite/58">
           {eyebrow}
         </p>
         <h1 className="mt-6 font-display text-6xl italic leading-none sm:text-8xl">

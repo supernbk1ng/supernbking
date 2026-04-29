@@ -48,7 +48,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       <div className="page-header-grid relative overflow-hidden border-b border-ink-blue/8 pb-12 pt-28">
         <div className="mx-auto w-full max-w-3xl px-5 sm:px-8 lg:px-12">
           <Link
-            className="inline-flex items-center gap-2 font-mono text-[0.64rem] font-semibold uppercase text-graphite/45 transition-colors hover:text-ink-blue"
+            className="inline-flex items-center gap-2 font-mono text-[0.75rem] font-semibold uppercase text-graphite/45 transition-colors hover:text-ink-blue"
             href="/blog"
           >
             <span aria-hidden="true">&larr;</span>
@@ -58,7 +58,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       </div>
 
       <article className="mx-auto w-full max-w-3xl px-5 pb-24 pt-10 sm:px-8 lg:px-12">
-        <div className="flex flex-wrap items-center gap-3 font-mono text-[0.64rem] font-semibold uppercase">
+        <div className="flex flex-wrap items-center gap-3 font-mono text-[0.75rem] font-semibold uppercase">
           <span className="rounded-[4px] border border-ink-blue/20 bg-ink-blue/[0.05] px-2 py-0.5 text-ink-blue/80">
             {post.category}
           </span>
@@ -89,7 +89,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         <div className="mt-6 flex flex-wrap gap-2">
           {post.tags.map((tag) => (
             <span
-              className="font-mono text-[0.62rem] font-medium uppercase text-graphite/40"
+              className="font-mono text-[0.72rem] font-medium uppercase text-graphite/40"
               key={tag}
             >
               #{tag}
@@ -105,7 +105,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               <h2 className="font-display text-2xl italic text-graphite sm:text-3xl">
                 {section.heading}
               </h2>
-              <div className="mt-5 space-y-4 text-[0.95rem] leading-[1.85] text-graphite/72">
+              <div className="mt-5 space-y-4 text-base leading-[1.85] text-graphite/72">
                 {section.body.split("\n\n").map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
                 ))}
@@ -116,7 +116,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
         <hr className="mt-20 border-graphite/8" />
 
-        <footer className="mt-10 font-mono text-[0.64rem] text-graphite/35">
+        <footer className="mt-10 font-mono text-[0.75rem] text-graphite/35">
           <p>
             Published{" "}
             {new Date(post.date).toLocaleDateString("zh-CN", {

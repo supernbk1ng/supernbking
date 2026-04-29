@@ -23,12 +23,12 @@ export function SiteHeader({ variant = "dark" }: SiteHeaderProps) {
   return (
     <header
       className={cn(
-        "pointer-events-none absolute inset-x-0 top-0 z-30 flex items-center justify-between px-5 py-6 font-mono text-[0.68rem] font-semibold uppercase sm:px-8 lg:px-12",
+        "pointer-events-none absolute inset-x-0 top-0 z-30 flex items-center justify-between px-5 py-6 font-mono text-[0.8rem] font-semibold uppercase sm:px-8 lg:px-12",
         isDark ? "text-white/82" : "text-graphite/72"
       )}
     >
       <Link
-        className="pointer-events-auto text-xs tracking-wide transition-opacity hover:opacity-70"
+        className="pointer-events-auto text-base tracking-wide transition-opacity hover:opacity-70"
         href="/"
       >
         PORTFOLIO 2026
@@ -62,7 +62,7 @@ export function SiteHeader({ variant = "dark" }: SiteHeaderProps) {
 
       <div className="pointer-events-auto hidden items-center gap-4 sm:flex">
         <a
-          className="text-xs tracking-wide opacity-55 transition-opacity hover:opacity-100"
+          className="text-base tracking-wide opacity-55 transition-opacity hover:opacity-100"
           href="mailto:hello@example.com"
         >
           MAIL

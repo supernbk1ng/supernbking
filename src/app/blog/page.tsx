@@ -16,13 +16,13 @@ export default function BlogPage() {
 
       <div className="page-header-grid relative overflow-hidden border-b border-ink-blue/8 pb-16 pt-28">
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 lg:px-12">
-          <p className="font-mono text-[0.68rem] font-semibold uppercase text-graphite/58">
+          <p className="font-mono text-[0.8rem] font-semibold uppercase text-graphite/58">
             Writing Archive
           </p>
           <h1 className="mt-6 font-display text-6xl italic leading-none text-ink-blue sm:text-8xl">
             Blog
           </h1>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-graphite/60">
+          <p className="mt-4 max-w-xl text-base leading-7 text-graphite/60">
             课程笔记、技术文章、读书摘录的个人写作存档。按分类筛选，找到你感兴趣的内容。
           </p>
         </div>

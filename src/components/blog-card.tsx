@@ -25,7 +25,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
         className="group relative block rounded-[4px] border border-graphite/8 bg-white/80 p-6 pl-[calc(1.5rem-2px)] transition-all duration-300 before:absolute before:inset-y-3 before:left-0 before:w-[2px] before:rounded-full before:bg-transparent before:transition-colors before:duration-300 hover:border-graphite/20 hover:bg-white hover:shadow-[0_8px_32px_rgba(21,23,29,0.08)] hover:before:bg-ink-blue/45 sm:p-8 sm:pl-[calc(2rem-2px)]"
         href={`/blog/${post.slug}`}
       >
-        <div className="flex flex-wrap items-center gap-3 font-mono text-[0.64rem] font-semibold uppercase text-graphite/50">
+        <div className="flex flex-wrap items-center gap-3 font-mono text-[0.75rem] font-semibold uppercase text-graphite/50">
           <time dateTime={post.date}>
             {new Date(post.date).toLocaleDateString("zh-CN", {
               year: "numeric",
@@ -49,14 +49,14 @@ export function BlogCard({ post, index }: BlogCardProps) {
           {post.title}
         </h2>
 
-        <p className="mt-3 text-sm leading-7 text-graphite/58">
+        <p className="mt-3 text-base leading-7 text-graphite/58">
           {post.excerpt}
         </p>
 
         <div className="mt-5 flex flex-wrap gap-2">
           {post.tags.map((tag) => (
             <span
-              className="font-mono text-[0.62rem] font-medium uppercase text-graphite/40"
+              className="font-mono text-[0.72rem] font-medium uppercase text-graphite/40"
               key={tag}
             >
               #{tag}

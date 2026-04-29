@@ -24,7 +24,7 @@ export function ResourceCard({ resource, index }: ResourceCardProps) {
         ease: "easeOut"
       }}
     >
-      <span className="font-mono text-[0.62rem] font-semibold uppercase text-graphite/45">
+      <span className="font-mono text-[0.72rem] font-semibold uppercase text-graphite/45">
         {resource.category}
       </span>
 
@@ -34,13 +34,13 @@ export function ResourceCard({ resource, index }: ResourceCardProps) {
         </h3>
         <span
           aria-hidden="true"
-          className="mt-1 shrink-0 font-mono text-xs text-graphite/25 transition-colors group-hover:text-graphite/45"
+          className="mt-1 shrink-0 font-mono text-base text-graphite/25 transition-colors group-hover:text-graphite/45"
         >
           ↗
         </span>
       </div>
 
-      <p className="mt-2 text-sm leading-7 text-graphite/55">
+      <p className="mt-2 text-base leading-7 text-graphite/55">
         {resource.description}
       </p>
 

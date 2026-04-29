@@ -36,13 +36,13 @@ export function Timeline({ items }: TimelineProps) {
             </div>
 
             <div className="min-w-0">
-              <span className="font-mono text-xs font-semibold text-graphite/45">
+              <span className="font-mono text-base font-semibold text-graphite/45">
                 {item.year}
               </span>
               <h3 className="mt-1 font-display text-xl italic text-graphite">
                 {item.title}
               </h3>
-              <p className="mt-2 text-sm leading-7 text-graphite/58">
+              <p className="mt-2 text-base leading-7 text-graphite/58">
                 {item.description}
               </p>
             </div>
