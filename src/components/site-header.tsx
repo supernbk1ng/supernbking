@@ -23,18 +23,32 @@ export function SiteHeader({ variant = "dark" }: SiteHeaderProps) {
   return (
     <header
       className={cn(
-        "pointer-events-none absolute inset-x-0 top-0 z-30 flex items-center justify-between px-5 py-6 font-mono text-[0.8rem] font-semibold uppercase sm:px-8 lg:px-12",
-        isDark ? "text-white/82" : "text-graphite/72"
+        "pointer-events-none absolute inset-x-0 top-0 z-30 flex items-center justify-between px-5 font-mono font-semibold uppercase sm:px-8 lg:px-12",
+        isDark
+          ? "py-5 text-[0.75rem] text-white/[0.82]"
+          : "py-6 text-[0.8rem] text-graphite/72"
       )}
     >
       <Link
-        className="pointer-events-auto text-base tracking-wide transition-opacity hover:opacity-70"
+        className={cn(
+          "pointer-events-auto transition-colors duration-300",
+          isDark
+            ? "text-[0.8rem] hover:text-white"
+            : "text-base hover:text-graphite"
+        )}
         href="/"
       >
         PORTFOLIO 2026
       </Link>
 
-      <nav className="pointer-events-auto flex items-center gap-6 md:gap-8">
+      <nav
+        className={cn(
+          "pointer-events-auto items-center",
+          isDark
+            ? "absolute left-1/2 top-4 hidden -translate-x-1/2 gap-1 rounded-full border border-white/[0.16] bg-white/[0.07] px-3 py-2 shadow-[0_14px_48px_rgba(0,22,90,0.24),inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-md sm:flex"
+            : "flex gap-6 md:gap-8"
+        )}
+      >
         {navItems.map((item) => {
           const isActive =
             pathname === item.href ||
@@ -43,18 +57,24 @@ export function SiteHeader({ variant = "dark" }: SiteHeaderProps) {
           return (
             <Link
               className={cn(
-                "transition-opacity hover:opacity-100",
-                isActive
-                  ? cn(
-                      "opacity-100",
-                      isDark ? "text-white" : "text-graphite"
-                    )
-                  : "opacity-55"
+                "relative transition duration-300",
+                isDark
+                  ? "rounded-full px-4 py-2 text-white/[0.72] hover:bg-white/10 hover:text-white"
+                  : "transition-opacity hover:opacity-100",
+                isActive &&
+                  cn(
+                    "opacity-100",
+                    isDark ? "bg-white/[0.12] text-white" : "text-graphite"
+                  ),
+                !isActive && !isDark && "opacity-55"
               )}
               href={item.href}
               key={item.href}
             >
               {item.label}
+              {isActive && isDark ? (
+                <span className="absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-white/90" />
+              ) : null}
             </Link>
           );
         })}
@@ -62,7 +82,12 @@ export function SiteHeader({ variant = "dark" }: SiteHeaderProps) {
 
       <div className="pointer-events-auto hidden items-center gap-4 sm:flex">
         <a
-          className="text-base tracking-wide opacity-55 transition-opacity hover:opacity-100"
+          className={cn(
+            "rounded-full px-3 py-2 text-[0.8rem] transition duration-300",
+            isDark
+              ? "text-white/[0.72] hover:bg-white/10 hover:text-white"
+              : "text-base opacity-55 hover:opacity-100"
+          )}
           href="mailto:hello@example.com"
         >
           MAIL
