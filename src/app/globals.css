@@ -35,7 +35,7 @@ a {
   background-size: 56px 56px;
 }
 
-.blog-header-grid {
+.page-header-grid {
   background-image:
     linear-gradient(rgba(7, 84, 216, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(7, 84, 216, 0.045) 1px, transparent 1px);

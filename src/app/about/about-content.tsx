@@ -68,20 +68,7 @@ const fadeIn = {
 
 export function AboutContent() {
   return (
-    <section className="mx-auto w-full max-w-5xl px-5 py-28 sm:px-8 lg:px-12">
-      <motion.p
-        {...fadeIn}
-        className="font-mono text-[0.68rem] font-semibold uppercase text-graphite/58"
-      >
-        Student Profile
-      </motion.p>
-      <motion.h1
-        {...fadeIn}
-        className="mt-6 font-display text-6xl italic leading-none sm:text-8xl"
-      >
-        About
-      </motion.h1>
-
+    <section className="mx-auto w-full max-w-5xl px-5 pb-24 pt-6 sm:px-8 lg:px-12">
       <motion.div
         {...fadeIn}
         className="mt-14 grid gap-10 sm:grid-cols-2"
@@ -103,7 +90,7 @@ export function AboutContent() {
 
         <div className="space-y-6 font-mono text-xs">
           <div className="flex items-start gap-3">
-            <span className="shrink-0 rounded-[4px] border border-graphite/12 bg-white px-2 py-1 text-graphite/50">
+            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70">
               Education
             </span>
             <span className="pt-1 leading-6 text-graphite/65">
@@ -115,7 +102,7 @@ export function AboutContent() {
             </span>
           </div>
           <div className="flex items-start gap-3">
-            <span className="shrink-0 rounded-[4px] border border-graphite/12 bg-white px-2 py-1 text-graphite/50">
+            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70">
               Focus
             </span>
             <span className="pt-1 leading-6 text-graphite/65">
@@ -125,7 +112,7 @@ export function AboutContent() {
             </span>
           </div>
           <div className="flex items-start gap-3">
-            <span className="shrink-0 rounded-[4px] border border-graphite/12 bg-white px-2 py-1 text-graphite/50">
+            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70">
               Status
             </span>
             <span className="pt-1 leading-6 text-graphite/65">
@@ -135,24 +122,24 @@ export function AboutContent() {
             </span>
           </div>
           <div className="flex items-start gap-3">
-            <span className="shrink-0 rounded-[4px] border border-graphite/12 bg-white px-2 py-1 text-graphite/50">
+            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70">
               Contact
             </span>
             <span className="space-y-1 pt-1 font-mono text-xs leading-6">
               <a
-                className="block text-graphite/65 underline underline-offset-4 transition-colors hover:text-graphite"
+                className="block text-graphite/60 underline underline-offset-4 transition-colors hover:text-ink-blue"
                 href="mailto:3230102949@zju.edu.cn"
               >
                 3230102949@zju.edu.cn
               </a>
               <a
-                className="block text-graphite/65 underline underline-offset-4 transition-colors hover:text-graphite"
+                className="block text-graphite/60 underline underline-offset-4 transition-colors hover:text-ink-blue"
                 href="mailto:zst1873323741@gmail.com"
               >
                 zst1873323741@gmail.com
               </a>
               <a
-                className="block text-graphite/50 underline underline-offset-4 transition-colors hover:text-graphite"
+                className="block text-graphite/50 underline underline-offset-4 transition-colors hover:text-ink-blue"
                 href="https://github.com/supernbk1ng"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -175,7 +162,7 @@ export function AboutContent() {
         <div className="mt-5 flex flex-wrap gap-2">
           {skills.map((skill) => (
             <span
-              className="rounded-[4px] border border-graphite/12 bg-white/80 px-3 py-2 font-mono text-[0.66rem] font-semibold uppercase text-graphite/60 transition-colors hover:border-graphite/25 hover:text-graphite"
+              className="rounded-[4px] border border-graphite/12 bg-white/80 px-3 py-2 font-mono text-[0.66rem] font-semibold uppercase text-graphite/60 transition-colors hover:border-ink-blue/25 hover:text-ink-blue"
               key={skill}
             >
               {skill}

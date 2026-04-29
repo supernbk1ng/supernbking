@@ -13,7 +13,7 @@ export function ResourceCard({ resource, index }: ResourceCardProps) {
   return (
     <motion.a
       animate={{ opacity: 1, y: 0 }}
-      className="group block rounded-[4px] border border-graphite/8 bg-white/80 p-6 transition-all duration-300 hover:border-graphite/20 hover:bg-white hover:shadow-[0_8px_32px_rgba(21,23,29,0.08)] sm:p-7"
+      className="group relative block rounded-[4px] border border-graphite/8 bg-white/80 p-6 pl-[calc(1.5rem-2px)] transition-all duration-300 before:absolute before:inset-y-3 before:left-0 before:w-[2px] before:rounded-full before:bg-transparent before:transition-colors before:duration-300 hover:border-graphite/20 hover:bg-white hover:shadow-[0_8px_32px_rgba(21,23,29,0.08)] hover:before:bg-ink-blue/45 sm:p-7 sm:pl-[calc(1.75rem-2px)]"
       href={resource.url}
       initial={{ opacity: 0, y: 24 }}
       rel="noopener noreferrer"

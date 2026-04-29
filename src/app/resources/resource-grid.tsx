@@ -24,8 +24,8 @@ export function ResourceGrid() {
         <button
           className={`rounded-[4px] border px-4 py-2 font-mono text-[0.64rem] font-semibold uppercase transition-colors ${
             activeCategory === null
-              ? "border-graphite/40 bg-graphite text-white"
-              : "border-graphite/12 bg-white text-graphite/56 hover:border-graphite/28 hover:text-graphite"
+              ? "border-ink-blue/50 bg-ink-blue text-white"
+              : "border-graphite/12 bg-white text-graphite/56 hover:border-ink-blue/25 hover:text-ink-blue"
           }`}
           onClick={() => setActiveCategory(null)}
           type="button"
@@ -36,8 +36,8 @@ export function ResourceGrid() {
           <button
             className={`rounded-[4px] border px-4 py-2 font-mono text-[0.64rem] font-semibold uppercase transition-colors ${
               activeCategory === cat
-                ? "border-graphite/40 bg-graphite text-white"
-                : "border-graphite/12 bg-white text-graphite/56 hover:border-graphite/28 hover:text-graphite"
+                ? "border-ink-blue/50 bg-ink-blue text-white"
+                : "border-graphite/12 bg-white text-graphite/56 hover:border-ink-blue/25 hover:text-ink-blue"
             }`}
             key={cat}
             onClick={() => setActiveCategory(cat)}

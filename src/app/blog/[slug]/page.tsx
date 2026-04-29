@@ -45,7 +45,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     <main className="relative min-h-screen bg-paper text-graphite">
       <SiteHeader variant="light" />
 
-      <div className="blog-header-grid relative overflow-hidden border-b border-ink-blue/8 pb-12 pt-28">
+      <div className="page-header-grid relative overflow-hidden border-b border-ink-blue/8 pb-12 pt-28">
         <div className="mx-auto w-full max-w-3xl px-5 sm:px-8 lg:px-12">
           <Link
             className="inline-flex items-center gap-2 font-mono text-[0.64rem] font-semibold uppercase text-graphite/45 transition-colors hover:text-ink-blue"

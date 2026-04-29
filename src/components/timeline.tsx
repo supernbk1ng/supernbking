@@ -15,7 +15,7 @@ type TimelineProps = {
 export function Timeline({ items }: TimelineProps) {
   return (
     <div className="relative">
-      <div className="absolute bottom-0 left-[7px] top-0 w-px bg-graphite/12" aria-hidden="true" />
+      <div className="absolute bottom-0 left-[7px] top-0 w-px bg-ink-blue/12" aria-hidden="true" />
 
       <ol className="relative space-y-12">
         {items.map((item, index) => (
@@ -31,8 +31,8 @@ export function Timeline({ items }: TimelineProps) {
             }}
           >
             <div className="relative mt-1.5 h-2 w-2 flex-none">
-              <span className="absolute inset-0 rounded-full bg-graphite/30" />
-              <span className="absolute inset-0 rounded-full bg-graphite/60" />
+              <span className="absolute inset-0 rounded-full bg-ink-blue/25" />
+              <span className="absolute inset-0 rounded-full bg-ink-blue/55" />
             </div>
 
             <div className="min-w-0">

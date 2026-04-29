@@ -14,7 +14,7 @@ export default function BlogPage() {
     <main className="relative min-h-screen bg-paper text-graphite">
       <SiteHeader variant="light" />
 
-      <div className="blog-header-grid relative overflow-hidden border-b border-ink-blue/8 pb-16 pt-28">
+      <div className="page-header-grid relative overflow-hidden border-b border-ink-blue/8 pb-16 pt-28">
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 lg:px-12">
           <p className="font-mono text-[0.68rem] font-semibold uppercase text-graphite/58">
             Writing Archive
