@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { ResourceCard } from "@/components/resource-card";
@@ -13,14 +13,51 @@ import {
 export function ResourceGrid() {
   const [activeCategory, setActiveCategory] =
     useState<ResourceCategory | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const filtered = activeCategory
-    ? mockResources.filter((r) => r.category === activeCategory)
-    : mockResources;
+  const filtered = useMemo(() => {
+    let result = activeCategory
+      ? mockResources.filter((r) => r.category === activeCategory)
+      : mockResources;
+
+    if (searchQuery.trim()) {
+      const q = searchQuery.trim().toLowerCase();
+      result = result.filter(
+        (r) =>
+          r.name.toLowerCase().includes(q) ||
+          r.description.toLowerCase().includes(q) ||
+          r.tags.some((t) => t.toLowerCase().includes(q)) ||
+          r.category.toLowerCase().includes(q)
+      );
+    }
+
+    return result;
+  }, [activeCategory, searchQuery]);
 
   return (
     <>
-      <div className="mt-12 flex flex-wrap gap-3">
+      <div className="relative mt-12">
+        <input
+          aria-label="Search resources"
+          className="w-full rounded-[4px] border border-graphite/12 bg-white px-4 py-3 font-mono text-[0.78rem] text-graphite placeholder:text-graphite/35 transition-all duration-300 focus:border-ink-blue/40 focus:outline-none focus:ring-2 focus:ring-ink-blue/8"
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search resources..."
+          type="search"
+          value={searchQuery}
+        />
+        {searchQuery && (
+          <button
+            aria-label="Clear search"
+            className="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-base text-graphite/30 transition-colors hover:text-graphite/60"
+            onClick={() => setSearchQuery("")}
+            type="button"
+          >
+            &times;
+          </button>
+        )}
+      </div>
+
+      <div className="mt-6 flex flex-wrap gap-3">
         <button
           className={`rounded-[4px] border px-4 py-2 font-mono text-[0.75rem] font-semibold uppercase transition-colors ${
             activeCategory === null
@@ -63,13 +100,26 @@ export function ResourceGrid() {
               </motion.div>
             ))
           ) : (
-            <motion.p
+            <motion.div
               animate={{ opacity: 1 }}
-              className="col-span-full py-16 text-center font-mono text-base text-graphite/40"
+              className="col-span-full py-16 text-center"
               initial={{ opacity: 0 }}
             >
-              该分类暂无资源
-            </motion.p>
+              <p className="font-mono text-base text-graphite/40">
+                {searchQuery
+                  ? "No resources match your search."
+                  : "该分类暂无资源"}
+              </p>
+              {searchQuery && (
+                <button
+                  className="mt-4 font-mono text-[0.78rem] text-ink-blue/70 underline underline-offset-4 transition-colors hover:text-ink-blue"
+                  onClick={() => setSearchQuery("")}
+                  type="button"
+                >
+                  Clear search
+                </button>
+              )}
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
