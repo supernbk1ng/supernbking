@@ -12,7 +12,9 @@ export type BlogPost = {
   tags: string[];
   excerpt: string;
   readingTime: number;
+  coverImage?: string;
   sections: BlogSection[];
+  source?: "mdx";
 };
 
 export type BlogSection = {

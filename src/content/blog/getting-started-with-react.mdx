@@ -1,0 +1,88 @@
+---
+title: "React 入门实战：从组件思维到状态管理"
+date: "2026-04-25"
+category: "编程开发"
+tags:
+  - React
+  - 前端
+  - JavaScript
+  - 教程
+excerpt: "以实战项目为主线，理解 React 组件化、状态提升与副作用管理的核心思想。"
+readingTime: 10
+---
+
+## 为什么选择 React
+
+React 是目前最流行的前端 UI 库之一。它的核心思想很简单：
+
+> 用组件描述 UI，用状态驱动变化。
+
+与直接操作 DOM 的 jQuery 时代不同，React 让你**声明**你想要的结果，框架负责高效地更新页面。
+
+## 第一个组件
+
+React 组件就是一个返回 JSX 的函数：
+
+```tsx
+function Greeting({ name }: { name: string }) {
+  return <h1>Hello, {name}!</h1>;
+}
+```
+
+关键点：
+1. 组件名用 PascalCase
+2. 返回 JSX（看起来像 HTML，但本质是 JavaScript）
+3. Props 是组件的参数
+
+## 状态管理入门
+
+当 UI 需要随用户交互而变化时，你需要 **state**：
+
+```tsx
+import { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>+1</button>
+    </div>
+  );
+}
+```
+
+三条规则：
+- State 是**不可变**的，使用 setter 函数更新
+- setter 调用会触发**重新渲染**
+- 不要把 state 放在条件或循环中
+
+## 副作用与数据获取
+
+```tsx
+import { useEffect, useState } from "react";
+
+function UserProfile({ userId }: { userId: string }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch(`/api/users/${userId}`)
+      .then((res) => res.json())
+      .then(setUser);
+  }, [userId]);
+
+  if (!user) return <p>Loading...</p>;
+
+  return <div>{user.name}</div>;
+}
+```
+
+## 下一步
+
+掌握了组件、state 和 effect，你就有了构建大多数前端应用的能力。接下来可以深入学习：
+
+1. **Context API** — 全局状态共享
+2. **React Router** — 页面路由
+3. **TanStack Query** — 服务端状态管理
+4. **Next.js** — 全栈 React 框架

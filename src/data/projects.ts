@@ -8,6 +8,7 @@ export type Project = {
   stack: string[];
   gradient: string;
   accent: string;
+  coverImage?: string;
 };
 
 export const mockProjects: Project[] = [

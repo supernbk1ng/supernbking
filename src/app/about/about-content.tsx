@@ -75,14 +75,14 @@ export function AboutContent() {
         transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
       >
         <div>
-          <h2 className="font-display text-2xl italic text-graphite">
+          <h2 className="font-display text-2xl italic text-graphite dark:text-white">
             Hi, I&rsquo;m supernbking
           </h2>
-          <p className="mt-4 text-base leading-8 text-graphite/65">
+          <p className="mt-4 text-base leading-8 text-graphite/65 dark:text-gray-300">
             CS 专业大三学生，现居校园。对前端工程、AI
             应用和开发者工具充满热情。相信好的工具能让创造变得简单，好的设计能让技术变得温暖。
           </p>
-          <p className="mt-4 text-base leading-8 text-graphite/65">
+          <p className="mt-4 text-base leading-8 text-graphite/65 dark:text-gray-300">
             目前专注于 React / Next.js 技术栈的深度实践，同时探索 AI
             在开发者工具和应用层的落地。课余时间喜欢写博客、整理学习资源、参与开源项目。
           </p>
@@ -90,56 +90,56 @@ export function AboutContent() {
 
         <div className="space-y-6 font-mono text-base">
           <div className="flex items-start gap-3">
-            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70">
+            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70 dark:border-blue-400/20 dark:bg-blue-400/5 dark:text-blue-400">
               Education
             </span>
-            <span className="pt-1 leading-6 text-graphite/65">
+            <span className="pt-1 leading-6 text-graphite/65 dark:text-gray-300">
               B.S. Computer Science
               <br />
-              <span className="text-graphite/40">
+              <span className="text-graphite/40 dark:text-gray-500">
                 Expected Graduation: 2027
               </span>
             </span>
           </div>
           <div className="flex items-start gap-3">
-            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70">
+            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70 dark:border-blue-400/20 dark:bg-blue-400/5 dark:text-blue-400">
               Focus
             </span>
-            <span className="pt-1 leading-6 text-graphite/65">
+            <span className="pt-1 leading-6 text-graphite/65 dark:text-gray-300">
               Frontend Engineering
               <br />
               AI Application Development
             </span>
           </div>
           <div className="flex items-start gap-3">
-            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70">
+            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70 dark:border-blue-400/20 dark:bg-blue-400/5 dark:text-blue-400">
               Status
             </span>
-            <span className="pt-1 leading-6 text-graphite/65">
+            <span className="pt-1 leading-6 text-graphite/65 dark:text-gray-300">
               Available for internships
               <br />
-              <span className="text-graphite/40">Spring / Summer 2026</span>
+              <span className="text-graphite/40 dark:text-gray-500">Spring / Summer 2026</span>
             </span>
           </div>
           <div className="flex items-start gap-3">
-            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70">
+            <span className="shrink-0 rounded-[4px] border border-ink-blue/15 bg-ink-blue/[0.03] px-2 py-1 text-ink-blue/70 dark:border-blue-400/20 dark:bg-blue-400/5 dark:text-blue-400">
               Contact
             </span>
             <span className="space-y-1 pt-1 font-mono text-base leading-6">
               <a
-                className="block text-graphite/60 underline underline-offset-4 transition-colors hover:text-ink-blue"
+                className="block text-graphite/60 underline underline-offset-4 transition-colors hover:text-ink-blue dark:text-gray-300 dark:hover:text-blue-400"
                 href="mailto:3230102949@zju.edu.cn"
               >
                 3230102949@zju.edu.cn
               </a>
               <a
-                className="block text-graphite/60 underline underline-offset-4 transition-colors hover:text-ink-blue"
+                className="block text-graphite/60 underline underline-offset-4 transition-colors hover:text-ink-blue dark:text-gray-300 dark:hover:text-blue-400"
                 href="mailto:zst1873323741@gmail.com"
               >
                 zst1873323741@gmail.com
               </a>
               <a
-                className="block text-graphite/50 underline underline-offset-4 transition-colors hover:text-ink-blue"
+                className="block text-graphite/50 underline underline-offset-4 transition-colors hover:text-ink-blue dark:text-gray-400 dark:hover:text-blue-400"
                 href="https://github.com/supernbk1ng"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -156,13 +156,13 @@ export function AboutContent() {
         className="mt-20"
         transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
       >
-        <h2 className="font-display text-2xl italic text-graphite">
+        <h2 className="font-display text-2xl italic text-graphite dark:text-white">
           Skills
         </h2>
         <div className="mt-5 flex flex-wrap gap-2">
           {skills.map((skill) => (
             <span
-              className="rounded-[4px] border border-graphite/12 bg-white/80 px-3 py-2 font-mono text-[0.78rem] font-semibold uppercase text-graphite/60 transition-colors hover:border-ink-blue/25 hover:text-ink-blue"
+              className="rounded-[4px] border border-graphite/12 bg-white/80 px-3 py-2 font-mono text-[0.78rem] font-semibold uppercase text-graphite/60 transition-colors hover:border-ink-blue/25 hover:text-ink-blue dark:border-white/10 dark:bg-gray-900/80 dark:text-gray-400 dark:hover:border-blue-400/30 dark:hover:text-blue-400"
               key={skill}
             >
               {skill}
@@ -176,13 +176,13 @@ export function AboutContent() {
         className="mt-16"
         transition={{ delay: 0.25, duration: 0.5, ease: "easeOut" }}
       >
-        <h2 className="font-display text-2xl italic text-graphite">
+        <h2 className="font-display text-2xl italic text-graphite dark:text-white">
           Interests
         </h2>
         <div className="mt-5 flex flex-wrap gap-2">
           {interests.map((interest) => (
             <span
-              className="rounded-[4px] border border-graphite/10 bg-graphite/[0.02] px-3 py-2 font-mono text-[0.78rem] font-medium text-graphite/55"
+              className="rounded-[4px] border border-graphite/10 bg-graphite/[0.02] px-3 py-2 font-mono text-[0.78rem] font-medium text-graphite/55 dark:border-white/8 dark:bg-white/[0.02] dark:text-gray-400"
               key={interest}
             >
               {interest}
@@ -196,7 +196,7 @@ export function AboutContent() {
         className="mt-20"
         transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
       >
-        <h2 className="font-display text-2xl italic text-graphite">
+        <h2 className="font-display text-2xl italic text-graphite dark:text-white">
           Timeline
         </h2>
         <div className="mt-8">
@@ -206,7 +206,7 @@ export function AboutContent() {
 
       <motion.footer
         {...fadeIn}
-        className="mt-24 border-t border-graphite/8 pt-8 font-mono text-[0.75rem] text-graphite/35"
+        className="mt-24 border-t border-graphite/8 pt-8 font-mono text-[0.75rem] text-graphite/35 dark:border-white/8 dark:text-gray-500"
         transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
       >
         <p>Built with Next.js, TypeScript, Tailwind CSS &amp; Framer Motion.</p>

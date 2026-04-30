@@ -321,10 +321,11 @@ npm run build
 3. **MDX 迁移**：把 `posts.ts` 的 mock 内容迁移到 `.mdx`，支持代码块和数学公式。
 4. **搜索功能**：博客和资源页加入轻量客户端搜索，例如 Fuse.js。
 5. **移动端导航**：首页当前隐藏 pill nav，后续可做轻量菜单。
-6. **资源和文章真实内容替换**：继续扩充 `src/data/posts.ts` 和 `src/data/resources.ts`。
-7. **图片资产**：为项目和博客添加 `public/` 下的封面图。
-8. **阅读体验**：博客详情页加入目录、阅读进度、返回顶部。
-9. **部署后检查**：Vercel Preview 与 Production 都需要打开 `/`、`/blog`、`/projects`、`/resources`、`/about` 做冒烟检查。
+6. **明暗交替**：增加一个亮暗更替按键，用户点击后就可以将主题修改为夜间/白天模式
+7.  **阅读体验**：博客详情页加入目录、阅读进度、返回顶部。
+8.  **部署后检查**：Vercel Preview 与 Production 都需要打开 `/`、`/blog`、`/projects`、`/resources`、`/about` 做冒烟检查。
+9. **资源和文章真实内容替换**：继续扩充 `src/data/posts.ts` 和 `src/data/resources.ts`。
+10. **图片资产**：为项目和博客添加 `public/` 下的封面图。
 
 ## 14. 快速接手入口
 

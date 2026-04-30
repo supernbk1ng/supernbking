@@ -273,6 +273,51 @@ a {
   }
 }
 
+.dark .home-grid {
+  background-color: #021a52;
+}
+
+.dark .home-grid::before {
+  background:
+    radial-gradient(circle at 50% 47%, rgba(55, 120, 220, 0.30), rgba(2, 26, 82, 0.12) 35%, transparent 62%),
+    radial-gradient(circle at 50% 100%, rgba(20, 80, 200, 0.16), transparent 48%);
+}
+
+.dark .hero-title-glow {
+  text-shadow:
+    0 0 24px rgba(180, 200, 255, 0.10),
+    0 12px 44px rgba(0, 12, 60, 0.40);
+}
+
+/* ---------- reading experience ---------- */
+
+.toc-link {
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.toc-link:hover,
+.toc-link.active {
+  color: var(--accent, #0754d8);
+}
+
+.dark .toc-link:hover,
+.dark .toc-link.active {
+  color: #6aa4ff;
+}
+
+/* ---------- back to top button ---------- */
+
+.back-to-top {
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ---------- mobile menu panel ---------- */
+
+.mobile-menu-panel {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

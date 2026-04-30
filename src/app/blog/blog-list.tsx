@@ -4,9 +4,13 @@ import { useState, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { BlogCard } from "@/components/blog-card";
-import { blogCategories, mockPosts, type BlogCategory } from "@/data/posts";
+import { blogCategories, type BlogCategory, type BlogPost } from "@/data/posts";
 
-export function BlogList() {
+type BlogListProps = {
+  posts: BlogPost[];
+};
+
+export function BlogList({ posts }: BlogListProps) {
   const [activeCategory, setActiveCategory] = useState<BlogCategory | null>(
     null
   );
@@ -14,8 +18,8 @@ export function BlogList() {
 
   const filteredPosts = useMemo(() => {
     let result = activeCategory
-      ? mockPosts.filter((p) => p.category === activeCategory)
-      : mockPosts;
+      ? posts.filter((p) => p.category === activeCategory)
+      : posts;
 
     if (searchQuery.trim()) {
       const q = searchQuery.trim().toLowerCase();
@@ -29,14 +33,14 @@ export function BlogList() {
     }
 
     return result;
-  }, [activeCategory, searchQuery]);
+  }, [activeCategory, searchQuery, posts]);
 
   return (
     <>
       <div className="relative mt-12">
         <input
           aria-label="Search blog posts"
-          className="w-full rounded-[4px] border border-graphite/12 bg-white px-4 py-3 font-mono text-[0.78rem] text-graphite placeholder:text-graphite/35 transition-all duration-300 focus:border-ink-blue/40 focus:outline-none focus:ring-2 focus:ring-ink-blue/8"
+          className="w-full rounded-[4px] border border-graphite/12 bg-white px-4 py-3 font-mono text-[0.78rem] text-graphite placeholder:text-graphite/35 transition-all duration-300 focus:border-ink-blue/40 focus:outline-none focus:ring-2 focus:ring-ink-blue/8 dark:border-white/10 dark:bg-gray-900 dark:text-gray-200 dark:placeholder:text-gray-500 dark:focus:border-blue-400/50 dark:focus:ring-blue-400/10"
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search posts..."
           type="search"
@@ -45,7 +49,7 @@ export function BlogList() {
         {searchQuery && (
           <button
             aria-label="Clear search"
-            className="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-base text-graphite/30 transition-colors hover:text-graphite/60"
+            className="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-base text-graphite/30 transition-colors hover:text-graphite/60 dark:text-gray-500 dark:hover:text-gray-300"
             onClick={() => setSearchQuery("")}
             type="button"
           >
@@ -58,8 +62,8 @@ export function BlogList() {
         <button
           className={`rounded-[4px] border px-4 py-2 font-mono text-[0.75rem] font-semibold uppercase transition-colors ${
             activeCategory === null
-              ? "border-ink-blue/50 bg-ink-blue text-white"
-              : "border-graphite/12 bg-white text-graphite/56 hover:border-ink-blue/25 hover:text-ink-blue"
+              ? "border-ink-blue/50 bg-ink-blue text-white dark:border-blue-400/50 dark:bg-blue-600"
+              : "border-graphite/12 bg-white text-graphite/56 hover:border-ink-blue/25 hover:text-ink-blue dark:border-white/10 dark:bg-gray-900 dark:text-gray-400 dark:hover:border-blue-400/30 dark:hover:text-blue-400"
           }`}
           onClick={() => setActiveCategory(null)}
           type="button"
@@ -70,8 +74,8 @@ export function BlogList() {
           <button
             className={`rounded-[4px] border px-4 py-2 font-mono text-[0.75rem] font-semibold uppercase transition-colors ${
               activeCategory === cat
-                ? "border-ink-blue/50 bg-ink-blue text-white"
-                : "border-graphite/12 bg-white text-graphite/56 hover:border-ink-blue/25 hover:text-ink-blue"
+                ? "border-ink-blue/50 bg-ink-blue text-white dark:border-blue-400/50 dark:bg-blue-600"
+                : "border-graphite/12 bg-white text-graphite/56 hover:border-ink-blue/25 hover:text-ink-blue dark:border-white/10 dark:bg-gray-900 dark:text-gray-400 dark:hover:border-blue-400/30 dark:hover:text-blue-400"
             }`}
             key={cat}
             onClick={() => setActiveCategory(cat)}
@@ -102,14 +106,14 @@ export function BlogList() {
               className="py-16 text-center"
               initial={{ opacity: 0 }}
             >
-              <p className="font-mono text-base text-graphite/40">
+              <p className="font-mono text-base text-graphite/40 dark:text-gray-500">
                 {searchQuery
                   ? "No posts match your search."
                   : "该分类暂无文章"}
               </p>
               {searchQuery && (
                 <button
-                  className="mt-4 font-mono text-[0.78rem] text-ink-blue/70 underline underline-offset-4 transition-colors hover:text-ink-blue"
+                  className="mt-4 font-mono text-[0.78rem] text-ink-blue/70 underline underline-offset-4 transition-colors hover:text-ink-blue dark:text-blue-400/70 dark:hover:text-blue-400"
                   onClick={() => setSearchQuery("")}
                   type="button"
                 >

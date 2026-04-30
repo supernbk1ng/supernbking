@@ -11,15 +11,15 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="relative min-h-screen bg-paper text-graphite">
+    <main className="relative min-h-screen bg-paper text-graphite dark:bg-gray-950 dark:text-gray-100">
       <SiteHeader variant="light" />
 
-      <div className="page-header-grid relative overflow-hidden border-b border-ink-blue/8 pb-12 pt-28">
+      <div className="page-header-grid relative overflow-hidden border-b border-ink-blue/8 pb-12 pt-28 dark:border-white/6">
         <div className="mx-auto w-full max-w-5xl px-5 sm:px-8 lg:px-12">
-          <p className="font-mono text-[0.8rem] font-semibold uppercase text-graphite/58">
+          <p className="font-mono text-[0.8rem] font-semibold uppercase text-graphite/58 dark:text-gray-400">
             Student Profile
           </p>
-          <h1 className="mt-6 font-display text-6xl italic leading-none text-ink-blue sm:text-8xl">
+          <h1 className="mt-6 font-display text-6xl italic leading-none text-ink-blue sm:text-8xl dark:text-blue-400">
             About
           </h1>
         </div>

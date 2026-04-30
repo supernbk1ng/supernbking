@@ -12,8 +12,21 @@ learning resources.
 | Language | TypeScript 5.9 |
 | Styling | Tailwind CSS 3.4 |
 | Animation | Framer Motion 12 |
-| Content | Local TypeScript mock data (`src/data/`) |
+| Content | TypeScript mock data (`src/data/`) + MDX (`src/content/blog/`) |
 | Deploy | Vercel (static, no database or env vars) |
+
+### Features
+
+- Pixel art hero landing with brand ink-blue grid and Framer Motion animations
+- 3D rotating project carousel with gradient cards
+- Blog: category filter + client-side search + MDX authoring support
+- Resources: category filter + client-side search
+- Dark/light theme toggle with localStorage persistence
+- Reading progress bar, back-to-top, table of contents
+- Custom 404 page with brand styling
+- Mobile hamburger menu with slide-in panel
+- Full SEO: Open Graph, Twitter Card, sitemap, robots.txt, JSON-LD
+- All pages responsive (mobile/tablet/desktop)
 
 ### Pages
 
@@ -40,7 +53,132 @@ learning resources.
 - **404 page** — Custom `not-found.tsx` with brand visuals and return links
 - **SEO** — Full metadata, Open Graph, Twitter Card, sitemap, robots, JSON-LD
 - **Search** — Client-side keyword search on Blog and Resources (combined with category filter)
+- **Mobile nav** — Hamburger menu with slide-in panel, Framer Motion animated
+- **Theme toggle** — Dark/light mode with localStorage persistence + system preference detection
+- **Reading experience** — Reading progress bar, back-to-top button, table of contents
+- **MDX support** — Blog posts can now be authored as `.mdx` files alongside existing `posts.ts` data
+- **Cover images** — Blog posts and projects support optional `coverImage` field
 - **README** — Post-deployment smoke checklist (26 items across pages, SEO, features, responsive, cross-browser)
+
+## Content Management
+
+### Adding a Blog Post (MDX — recommended)
+
+1. Create a new `.mdx` file in `src/content/blog/`:
+   ```
+   src/content/blog/my-new-post.mdx
+   ```
+
+2. Add frontmatter at the top:
+   ```yaml
+   ---
+   title: "My Post Title"
+   date: "2026-05-01"
+   category: "编程开发"
+   tags:
+     - React
+     - TypeScript
+   excerpt: "A short description shown in the blog list."
+   readingTime: 8
+   coverImage: "/blog/my-cover.jpg"
+   ---
+   ```
+
+3. Write the post body in Markdown below the `---` line.
+
+4. Register the MDX component in `src/lib/mdx.ts`:
+   ```ts
+   const mdxLoaders = {
+     // ... existing entries ...
+     "my-new-post": () => import("@/content/blog/my-new-post.mdx"),
+   };
+   ```
+
+5. Rebuild: `npm run build`. The post will appear in `/blog` automatically.
+
+### Adding a Blog Post (TypeScript — legacy)
+
+Add an entry to `src/data/posts.ts` in the `mockPosts` array:
+
+```ts
+{
+  slug: "my-slug",
+  title: "My Post Title",
+  date: "2026-05-01",
+  category: "编程开发",
+  tags: ["React", "TypeScript"],
+  excerpt: "A short description.",
+  readingTime: 8,
+  coverImage: "/blog/my-cover.jpg", // optional
+  sections: [
+    {
+      heading: "Section One",
+      body: "Paragraph text here.\n\nAnother paragraph."
+    }
+  ]
+}
+```
+
+### Adding a Resource
+
+Add an entry to `src/data/resources.ts` in the `mockResources` array:
+
+```ts
+{
+  name: "Resource Name",
+  description: "A brief description of what this resource offers.",
+  category: "开发工具",
+  tags: ["tag1", "tag2"],
+  url: "https://example.com/"
+}
+```
+
+### Adding a Project
+
+Add an entry to `src/data/projects.ts` in the `mockProjects` array:
+
+```ts
+{
+  slug: "project-slug",
+  title: "Project Title",
+  subtitle: "One-line description",
+  year: "2026",
+  category: "Web App",
+  summary: "Detailed project description.",
+  stack: ["Next.js", "TypeScript", "Tailwind"],
+  gradient: "linear-gradient(135deg, #hex1 0%, #hex2 48%, #hex3 100%)",
+  accent: "#hexAccent",
+  coverImage: "/projects/my-cover.jpg" // optional
+}
+```
+
+### Adding Cover Images
+
+- **Blog covers**: Place images in `public/blog/`, reference as `/blog/filename.jpg`
+- **Project covers**: Place images in `public/projects/`, reference as `/projects/filename.jpg`
+- **Format**: WebP or AVIF preferred, JPG/PNG acceptable. Keep under 200KB.
+- **Aspect ratio**: 16:9 or 2:1 works well for blog cards. Square or 4:3 for projects.
+- **Fallback**: If `coverImage` is missing or empty, no image is rendered — no error.
+
+### MDX Migration Path
+
+Current state:
+- `src/data/posts.ts` (`mockPosts`) — 8 hardcoded blog posts with structured `sections`
+- `src/content/blog/` — 1 example `.mdx` post (more can be added incrementally)
+- Both sources are merged and displayed together in `/blog`
+
+To migrate an existing post from TypeScript to MDX:
+
+1. Create the `.mdx` file with frontmatter matching the original post's metadata
+2. Rewrite the `sections` array as Markdown headings and paragraphs
+3. Register the component in `src/lib/mdx.ts`
+4. Remove the post from `mockPosts` in `src/data/posts.ts`
+
+Future enhancements (not yet implemented):
+- **Code syntax highlighting**: Install `rehype-highlight` or `prism-react-renderer`, update `src/mdx-components.tsx`
+- **Math formulas**: Install `remark-math` + `rehype-katex`, add KaTeX stylesheet to layout
+- **Dynamic MDX loading**: Replace the static import map with a build-time registry for automatic slug→component resolution
+- **Full MDX migration**: Move all posts to `.mdx`, deprecate `mockPosts`
 
 ## Local Commands
 
