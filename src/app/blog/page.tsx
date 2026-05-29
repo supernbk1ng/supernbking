@@ -11,11 +11,17 @@ export const metadata: Metadata = {
     "课程笔记、编程开发、AI/机器学习与读书笔记的个人写作存档。"
 };
 
-export default function BlogPage() {
+type BlogPageProps = {
+  searchParams: Promise<{ tag?: string }>;
+};
+
+export default async function BlogPage({ searchParams }: BlogPageProps) {
   const mdxPosts = getMdxPosts();
   const posts = [...mdxPosts, ...mockPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
+
+  const { tag } = await searchParams;
 
   return (
     <main className="relative min-h-screen bg-paper text-graphite dark:bg-gray-950 dark:text-gray-100">
@@ -36,7 +42,7 @@ export default function BlogPage() {
       </div>
 
       <section className="mx-auto w-full max-w-4xl px-5 pb-24 pt-14 sm:px-8 lg:px-12">
-        <BlogList posts={posts} />
+        <BlogList initialTag={tag || null} posts={posts} />
       </section>
     </main>
   );

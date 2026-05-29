@@ -67,12 +67,14 @@ export function BlogCard({ post, index }: BlogCardProps) {
 
         <div className="mt-5 flex flex-wrap gap-2">
           {post.tags.map((tag) => (
-            <span
-              className="font-mono text-[0.72rem] font-medium uppercase text-graphite/40 dark:text-gray-500"
+            <Link
+              className="font-mono text-[0.72rem] font-medium uppercase text-graphite/40 transition-colors hover:text-ink-blue dark:text-gray-500 dark:hover:text-blue-400"
+              href={`/blog?tag=${encodeURIComponent(tag)}`}
               key={tag}
+              onClick={(e) => e.stopPropagation()}
             >
               #{tag}
-            </span>
+            </Link>
           ))}
         </div>
       </Link>

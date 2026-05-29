@@ -38,6 +38,7 @@ export const mockPosts: BlogPost[] = [
     tags: ["CSAPP", "汇编", "计算机组成", "系统编程"],
     excerpt:
       "梳理 x86-64 汇编指令、栈帧结构与调用惯例，结合 GDB 调试实战理解程序在硬件层面的执行过程。",
+    coverImage: "/blog/csapp-machine-level-programming.svg",
     readingTime: 12,
     sections: [
       {
@@ -66,6 +67,7 @@ export const mockPosts: BlogPost[] = [
     tags: ["Next.js", "React", "TypeScript", "App Router"],
     excerpt:
       "从 Pages Router 迁移到 App Router 的实践记录，涵盖路由组织、数据获取、静态生成与部署优化的核心模式。",
+    coverImage: "/blog/nextjs-app-router-patterns.svg",
     readingTime: 10,
     sections: [
       {
@@ -94,6 +96,7 @@ export const mockPosts: BlogPost[] = [
     tags: ["深度学习", "反向传播", "NumPy", "数学推导"],
     excerpt:
       "用 NumPy 从零搭建一个三层全连接网络，手推梯度公式，逐行实现前向传播和反向传播。",
+    coverImage: "/blog/neural-network-from-scratch.svg",
     readingTime: 15,
     sections: [
       {
@@ -122,6 +125,7 @@ export const mockPosts: BlogPost[] = [
     tags: ["软件工程", "代码质量", "命名", "重构"],
     excerpt:
       "重读 Clean Code 的精华摘录与实践反思，聚焦命名、函数设计、注释与错误处理四大核心主题。",
+    coverImage: "/blog/clean-code-reading-notes.svg",
     readingTime: 8,
     sections: [
       {
@@ -150,6 +154,7 @@ export const mockPosts: BlogPost[] = [
     tags: ["TypeScript", "泛型", "类型系统", "高级类型"],
     excerpt:
       "系统梳理 TypeScript 泛型的核心概念、约束、条件类型与 infer 关键字，配合实战案例深入理解类型编程。",
+    coverImage: "/blog/typescript-generics-deep-dive.svg",
     readingTime: 11,
     sections: [
       {
@@ -178,6 +183,7 @@ export const mockPosts: BlogPost[] = [
     tags: ["NLP", "Transformer", "Attention", "深度学习"],
     excerpt:
       "逐步拆解注意力机制的数学原理，从传统的 Seq2Seq + Attention 过渡到 Self-Attention 和 Multi-Head Attention。",
+    coverImage: "/blog/attention-mechanism-explained.svg",
     readingTime: 14,
     sections: [
       {
@@ -206,6 +212,7 @@ export const mockPosts: BlogPost[] = [
     tags: ["数据结构", "算法", "考试复习", "C++"],
     excerpt:
       "期末考试前的系统梳理：数组、链表、栈、队列、树、图、哈希表的实现要点、复杂度分析和高频考点。",
+    coverImage: "/blog/data-structures-review.svg",
     readingTime: 13,
     sections: [
       {
@@ -234,6 +241,7 @@ export const mockPosts: BlogPost[] = [
     tags: ["软件工程", "职业成长", "最佳实践", "DRY"],
     excerpt:
       "从\"破窗理论\"到\"知识组合\"，提炼《The Pragmatic Programmer》中最值得实践的十条建议。",
+    coverImage: "/blog/pragmatic-programmer-notes.svg",
     readingTime: 7,
     sections: [
       {
@@ -271,4 +279,19 @@ export function getRecentPosts(count = 4) {
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     )
     .slice(0, count);
+}
+
+export function getAdjacentPosts(slug: string): {
+  prev: BlogPost | null;
+  next: BlogPost | null;
+} {
+  const sorted = [...mockPosts].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+  const idx = sorted.findIndex((p) => p.slug === slug);
+  if (idx === -1) return { prev: null, next: null };
+  return {
+    prev: idx < sorted.length - 1 ? sorted[idx + 1] : null,
+    next: idx > 0 ? sorted[idx - 1] : null
+  };
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -61,7 +62,7 @@ export default async function ProjectDetailPage({
         </div>
       </div>
 
-      <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-10 sm:px-8 lg:px-12">
+      <section className="mx-auto w-full max-w-6xl px-5 py-10 pb-24 sm:px-8 lg:px-12">
         <p className="font-mono text-[0.8rem] font-semibold uppercase">
           <span className="rounded-[4px] border border-ink-blue/20 bg-ink-blue/[0.05] px-2 py-0.5 text-ink-blue/80 dark:border-blue-400/25 dark:bg-blue-400/8 dark:text-blue-400">
             {project.category}
@@ -78,13 +79,93 @@ export default async function ProjectDetailPage({
         <div className="mt-8 flex flex-wrap gap-2">
           {project.stack.map((item) => (
             <span
-              className="rounded-[4px] border border-graphite/12 bg-white/60 px-3 py-2 font-mono text-[0.78rem] font-semibold uppercase text-graphite/72 transition-colors hover:border-ink-blue/20 hover:text-ink-blue dark:border-white/10 dark:bg-gray-900/60 dark:text-gray-300 dark:hover:border-blue-400/30 dark:hover:text-blue-400"
+              className="rounded-[4px] border border-graphite/12 bg-white/60 px-3 py-2 font-mono text-[0.78rem] font-semibold uppercase text-graphite/72 dark:border-white/10 dark:bg-gray-900/60 dark:text-gray-300"
               key={item}
             >
               {item}
             </span>
           ))}
         </div>
+
+        {(project.githubUrl || project.demoUrl) && (
+          <div className="mt-8 flex flex-wrap gap-4">
+            {project.githubUrl && (
+              <a
+                className="inline-flex items-center gap-2 rounded-[4px] border border-graphite/12 bg-white px-5 py-3 font-mono text-[0.78rem] font-semibold uppercase text-graphite/72 transition-colors hover:border-ink-blue/20 hover:text-ink-blue dark:border-white/10 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-blue-400/30 dark:hover:text-blue-400"
+                href={project.githubUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                GitHub &rarr;
+              </a>
+            )}
+            {project.demoUrl && (
+              <a
+                className="inline-flex items-center gap-2 rounded-[4px] border border-graphite/12 bg-white px-5 py-3 font-mono text-[0.78rem] font-semibold uppercase text-graphite/72 transition-colors hover:border-ink-blue/20 hover:text-ink-blue dark:border-white/10 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-blue-400/30 dark:hover:text-blue-400"
+                href={project.demoUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Live Demo &rarr;
+              </a>
+            )}
+          </div>
+        )}
+
+        {project.description && (
+          <>
+            <hr className="mt-12 border-graphite/8 dark:border-white/8" />
+            <div className="mt-10 max-w-3xl">
+              <h2 className="font-display text-2xl italic text-graphite dark:text-white sm:text-3xl">
+                About
+              </h2>
+              <div className="mt-5 space-y-4 text-base leading-[1.85] text-graphite/72 dark:text-gray-300">
+                {project.description.split("\n\n").map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
+        {project.screenshots && project.screenshots.length > 0 && (
+          <>
+            <hr className="mt-12 border-graphite/8 dark:border-white/8" />
+            <div className="mt-10">
+              <h2 className="font-display text-2xl italic text-graphite dark:text-white sm:text-3xl">
+                Screenshots
+              </h2>
+              <div className="mt-5 grid gap-6 sm:grid-cols-2">
+                {project.screenshots.map((src, i) => (
+                  <div
+                    className="relative aspect-video overflow-hidden rounded-[4px] border border-graphite/8 dark:border-white/8"
+                    key={i}
+                  >
+                    <Image
+                      alt={`${project.title} screenshot ${i + 1}`}
+                      className="object-cover"
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      src={src}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
+        {project.coverImage && (
+          <div className="relative mt-12 aspect-[2/1] w-full max-w-3xl overflow-hidden rounded-[4px] border border-graphite/8 dark:border-white/8">
+            <Image
+              alt={`${project.title} cover`}
+              className="object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 700px"
+              src={project.coverImage}
+            />
+          </div>
+        )}
       </section>
     </main>
   );

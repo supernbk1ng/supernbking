@@ -38,6 +38,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.6
+    },
+    {
+      url: `${siteUrl}/feed.xml`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.3
     }
   ];
 
