@@ -109,6 +109,42 @@ export const mockProjects: Project[] = [
     gradient:
       "linear-gradient(135deg, #e0fff9 0%, #50d7c7 42%, #123f48 100%)",
     accent: "#50d7c7"
+  },
+  {
+    slug: "adversarial-attack-lab",
+    title: "Adversarial Attack Lab",
+    subtitle: "ML security benchmark suite",
+    year: "2025",
+    category: "AI / ML",
+    summary:
+      "A comprehensive adversarial machine learning lab: 5 attack methods (FGSM, PGD, MI-FGSM, CW, Square), 2 defense strategies, and a Gradio web demo, all benchmarked on CIFAR-10.",
+    description:
+      "This project implements and benchmarks five classic adversarial attack algorithms from scratch using PyTorch, targeting a ResNet-18 classifier trained on CIFAR-10.\n\nThe five attacks span both white-box (FGSM, PGD, MI-FGSM, CW-L2) and black-box (Square Attack) paradigms. Each attack is implemented with clear, documented code that follows the original paper formulations — FGSM uses single-step gradient ascent, PGD iterates with random restarts, MI-FGSM accumulates momentum for better transferability, CW optimizes perturbations in arctanh space for tight L2 constraints, and Square Attack uses query-efficient randomized search.\n\nTwo defense strategies are implemented: input preprocessing (Gaussian noise injection and spatial smoothing) and adversarial training (PGD-based). A consistency-based detector can also distinguish clean from adversarial inputs by measuring prediction disagreement.\n\nThe entire pipeline is wrapped in an interactive Gradio web demo for real-time experimentation, and a comprehensive benchmark matrix evaluates all attack × defense × model combinations.",
+    stack: ["PyTorch", "torchattacks", "Gradio", "CIFAR-10", "ResNet-18"],
+    gradient:
+      "linear-gradient(135deg, #1a1a2e 0%, #16213e 42%, #0f3460 100%)",
+    accent: "#e94560",
+    coverImage: "/projects/adv-attack-lab.svg",
+    screenshots: ["/projects/adv-attack-lab.svg"],
+    githubUrl: "https://github.com/supernbking/adv-attack-lab"
+  },
+  {
+    slug: "dqn-maze-navigator",
+    title: "DQN Maze Navigator",
+    subtitle: "Deep RL for autonomous navigation",
+    year: "2025",
+    category: "AI / ML",
+    summary:
+      "A reinforcement learning project where agents learn to navigate procedurally generated mazes using Q-Learning and Deep Q-Networks (DQN) with both PyTorch and Keras backends.",
+    description:
+      "This project explores how reinforcement learning agents can learn to navigate complex, randomly generated mazes without any prior knowledge of the environment. Mazes are generated procedurally using Prim's algorithm, ensuring varied and unpredictable layouts for each training run.\n\nTwo algorithmic approaches are implemented and compared: tabular Q-Learning, which maintains a discrete state-action value table with epsilon-greedy exploration, and Deep Q-Network (DQN), which uses a neural network to approximate the Q-function for continuous state representations. The DQN features experience replay, target network updates, and two independent backends (PyTorch and Keras/TensorFlow) with identical APIs.\n\nThe training pipeline generates animated GIFs showing the agent's learning progression across episodes, along with reward curves and success rate statistics for quantitative comparison between Q-Learning and DQN. BFS search is also implemented as an optimal baseline.",
+    stack: ["PyTorch", "Keras", "DQN", "Q-Learning", "BFS", "Matplotlib"],
+    gradient:
+      "linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1a2332 100%)",
+    accent: "#58a6ff",
+    coverImage: "/projects/dqn-maze-navigator.svg",
+    screenshots: ["/projects/dqn-maze-navigator.svg"],
+    githubUrl: "https://github.com/supernbking/dqn-maze-navigator"
   }
 ];
 
