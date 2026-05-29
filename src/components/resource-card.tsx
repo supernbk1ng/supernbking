@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 import type { Resource } from "@/data/resources";
 
@@ -46,12 +47,14 @@ export function ResourceCard({ resource, index }: ResourceCardProps) {
 
       <div className="mt-4 flex flex-wrap gap-2">
         {resource.tags.map((tag) => (
-          <span
-            className="font-mono text-[0.6rem] font-medium uppercase text-graphite/38 dark:text-gray-500"
+          <Link
+            className="font-mono text-[0.6rem] font-medium uppercase text-graphite/38 transition-colors hover:text-ink-blue dark:text-gray-500 dark:hover:text-blue-400"
+            href={`/resources?tag=${encodeURIComponent(tag)}`}
             key={tag}
+            onClick={(e) => e.stopPropagation()}
           >
             #{tag}
-          </span>
+          </Link>
         ))}
       </div>
     </motion.a>

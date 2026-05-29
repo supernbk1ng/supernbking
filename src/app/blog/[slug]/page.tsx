@@ -7,7 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ReadingProgress } from "@/components/reading-progress";
 import { BackToTop } from "@/components/back-to-top";
 import { TableOfContents } from "@/components/table-of-contents";
-import { getPostBySlug, mockPosts } from "@/data/posts";
+import { getAdjacentPosts, getPostBySlug, mockPosts } from "@/data/posts";
 import { getMdxPost, getMdxComponent, getMdxSlugs } from "@/lib/mdx";
 
 type BlogDetailPageProps = {
@@ -64,6 +64,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         }));
 
   const MdxContent = mdxPost ? await getMdxComponent(slug) : null;
+  const { prev: prevPost, next: nextPost } = getAdjacentPosts(slug);
 
   return (
     <main className="relative min-h-screen bg-paper text-graphite dark:bg-gray-950 dark:text-gray-100">
@@ -128,12 +129,13 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
               <div className="mt-6 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <span
-                    className="font-mono text-[0.72rem] font-medium uppercase text-graphite/40 dark:text-gray-500"
+                  <Link
+                    className="font-mono text-[0.72rem] font-medium uppercase text-graphite/40 transition-colors hover:text-ink-blue dark:text-gray-500 dark:hover:text-blue-400"
+                    href={`/blog?tag=${encodeURIComponent(tag)}`}
                     key={tag}
                   >
                     #{tag}
-                  </span>
+                  </Link>
                 ))}
               </div>
 
@@ -174,6 +176,41 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 </p>
                 <p className="mt-1">Content is for personal study purposes only.</p>
               </footer>
+
+              {(prevPost || nextPost) && (
+                <nav className="mt-14 grid grid-cols-2 gap-6 border-t border-graphite/8 pt-10 dark:border-white/8">
+                  {prevPost ? (
+                    <Link
+                      className="group text-left"
+                      href={`/blog/${prevPost.slug}`}
+                    >
+                      <span className="font-mono text-[0.7rem] font-semibold uppercase text-graphite/35 dark:text-gray-500">
+                        &larr; Previous
+                      </span>
+                      <p className="mt-1 font-display text-base italic text-graphite/70 transition-colors group-hover:text-ink-blue dark:text-gray-300 dark:group-hover:text-blue-400">
+                        {prevPost.title}
+                      </p>
+                    </Link>
+                  ) : (
+                    <div />
+                  )}
+                  {nextPost ? (
+                    <Link
+                      className="group text-right"
+                      href={`/blog/${nextPost.slug}`}
+                    >
+                      <span className="font-mono text-[0.7rem] font-semibold uppercase text-graphite/35 dark:text-gray-500">
+                        Next &rarr;
+                      </span>
+                      <p className="mt-1 font-display text-base italic text-graphite/70 transition-colors group-hover:text-ink-blue dark:text-gray-300 dark:group-hover:text-blue-400">
+                        {nextPost.title}
+                      </p>
+                    </Link>
+                  ) : (
+                    <div />
+                  )}
+                </nav>
+              )}
             </div>
           </article>
 

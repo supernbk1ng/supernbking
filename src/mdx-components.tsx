@@ -77,7 +77,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         </code>
       ) : (
         <code
-          className={`block overflow-x-auto rounded-[4px] border border-graphite/8 bg-graphite/[0.03] p-4 font-mono text-[0.82rem] leading-relaxed dark:border-white/8 dark:bg-white/[0.03] ${className || ""}`}
+          className={`hljs-code-block font-mono text-[0.82rem] leading-relaxed ${className || ""}`}
           {...props}
         >
           {children}
@@ -86,7 +86,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     },
     pre: ({ children, ...props }) => (
       <pre
-        className="mt-4 overflow-x-auto"
+        className="mt-4 overflow-x-auto rounded-[4px] border border-graphite/8 bg-graphite/[0.03] p-4 dark:border-white/8 dark:bg-white/[0.03]"
         {...props}
       >
         {children}

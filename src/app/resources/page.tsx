@@ -9,7 +9,15 @@ export const metadata: Metadata = {
     "课程资料、开发工具、学习路线与推荐书籍的精选资源分享。"
 };
 
-export default function ResourcesPage() {
+type ResourcesPageProps = {
+  searchParams: Promise<{ tag?: string }>;
+};
+
+export default async function ResourcesPage({
+  searchParams
+}: ResourcesPageProps) {
+  const { tag } = await searchParams;
+
   return (
     <main className="relative min-h-screen bg-paper text-graphite dark:bg-gray-950 dark:text-gray-100">
       <SiteHeader variant="light" />
@@ -29,7 +37,7 @@ export default function ResourcesPage() {
       </div>
 
       <section className="mx-auto w-full max-w-6xl px-5 pb-24 pt-10 sm:px-8 lg:px-12">
-        <ResourceGrid />
+        <ResourceGrid initialTag={tag || null} />
       </section>
     </main>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
       "A minimal personal blog and project archive. Course notes, dev logs, AI/ML deep dives, and curated learning resources.",
     images: [
       {
-        url: `${siteUrl}/og-image.png`,
+        url: `${siteUrl}/og-image.svg`,
         width: 1200,
         height: 630,
         alt: "supernbking portfolio"
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     title: "supernbking | Creative Developer & CS Student",
     description:
       "A minimal personal blog and project archive. Course notes, dev logs, AI/ML deep dives, and curated learning resources.",
-    images: [`${siteUrl}/og-image.png`]
+    images: [`${siteUrl}/og-image.svg`]
   },
   robots: {
     index: true,
@@ -108,9 +109,16 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
           type="application/ld+json"
         />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="supernbking Blog RSS"
+          href="/feed.xml"
+        />
       </head>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

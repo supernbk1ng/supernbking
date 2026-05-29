@@ -8,18 +8,28 @@ import { blogCategories, type BlogCategory, type BlogPost } from "@/data/posts";
 
 type BlogListProps = {
   posts: BlogPost[];
+  initialTag?: string | null;
 };
 
-export function BlogList({ posts }: BlogListProps) {
+export function BlogList({ posts, initialTag }: BlogListProps) {
   const [activeCategory, setActiveCategory] = useState<BlogCategory | null>(
     null
   );
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeTag, setActiveTag] = useState<string | null>(
+    initialTag || null
+  );
 
   const filteredPosts = useMemo(() => {
     let result = activeCategory
       ? posts.filter((p) => p.category === activeCategory)
       : posts;
+
+    if (activeTag) {
+      result = result.filter((p) =>
+        p.tags.some((t) => t === activeTag)
+      );
+    }
 
     if (searchQuery.trim()) {
       const q = searchQuery.trim().toLowerCase();
@@ -33,7 +43,7 @@ export function BlogList({ posts }: BlogListProps) {
     }
 
     return result;
-  }, [activeCategory, searchQuery, posts]);
+  }, [activeCategory, activeTag, searchQuery, posts]);
 
   return (
     <>
@@ -85,6 +95,21 @@ export function BlogList({ posts }: BlogListProps) {
           </button>
         ))}
       </div>
+
+      {activeTag && (
+        <div className="mt-4 flex items-center gap-2 text-[0.78rem] font-mono text-graphite/50 dark:text-gray-400">
+          <span>
+            Tagged: <span className="font-semibold text-ink-blue dark:text-blue-400">#{activeTag}</span>
+          </span>
+          <button
+            className="underline underline-offset-4 transition-colors hover:text-ink-blue dark:hover:text-blue-400"
+            onClick={() => setActiveTag(null)}
+            type="button"
+          >
+            Clear
+          </button>
+        </div>
+      )}
 
       <div className="mt-12 grid gap-6">
         <AnimatePresence mode="wait">

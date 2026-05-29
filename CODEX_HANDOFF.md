@@ -1,7 +1,7 @@
 # Codex Handoff: supernbking 个人博客 / 作品集
 
-更新时间：2026-04-30
-当前状态：完整静态站点已完成，首页 Hero 已完成视觉精修，可继续做内容、SEO、MDX、搜索等迭代。
+更新时间：2026-05-29
+当前状态：核心功能完整，已添加语法高亮、RSS、标签导航、文章导航、项目详情增强、图片资产、分析统计、文档同步。
 仓库：`https://github.com/supernbk1ng/supernbking.git`
 默认分支：`master`
 
@@ -43,35 +43,42 @@
 | `/resources` | 完成 | 资源分享页，本地 mock 数据，分类筛选 |
 | `/about` | 完成 | 关于页，个人介绍、技能、兴趣、时间线、联系方式 |
 
-## 4. 本轮最新变更：首页 Hero 视觉精修
+## 4. 本轮最新变更：全站功能增强
 
-本轮只优化首页 `/`，没有改动 Blog、Projects、Resources、About 的功能逻辑。
+### 新增功能
+
+- **代码语法高亮**：MDX 代码块集成 `rehype-highlight`，支持 GitHub 风格明暗主题。
+- **RSS 订阅源**：新增 `/feed.xml` Route Handler，自动生成 RSS 2.0 XML。
+- **标签可点击**：博客和资源页标签改为链接，点击跳转至 `?tag=X` 筛选视图。
+- **文章间导航**：博客详情页底部显示上一篇/下一篇链接。
+- **项目详情页增强**：扩展 Project 类型，支持描述正文、GitHub 链接、Demo 链接、截图图库。
+- **图片资产**：为所有博客文章和项目生成 SVG 封面图，新增 OG 社交分享图。
+- **分析统计**：集成 `@vercel/analytics`，生产环境自动采集页面访问。
+- **文档同步**：更新 CODEX_HANDOFF.md 反映实际实现状态。
 
 ### 修改文件
 
-- `src/components/hero-section.tsx`
-- `src/components/site-header.tsx`
-- `src/app/globals.css`
-- `CODEX_HANDOFF.md`
-
-### 视觉变化
-
-- 背景网格透明度降低，避免抢走标题焦点。
-- 首页背景增加轻微 radial gradient 光晕，中心区域更亮。
-- 页面边缘增加克制暗角，整体更有空间感。
-- 主标题 `supernbking` 调整字号、行高与移动端尺寸。
-- 主标题增加非常轻的 text-shadow / glow。
-- 新增 tagline：`Building projects, notes and resources with care.`
-- 首页深色导航改成半透明 pill + backdrop blur。
-- `MAIL` 保持右上角独立链接，但视觉语言与导航一致。
-- 底部信息调整为三段：
-  - `AVAILABLE FOR / INTERNSHIPS · SPRING 2026`
-  - `VIEW WORKS →`
-  - `BASED IN / ZJU CAMPUS`
-- 像素花与像素星重新分层：大小、透明度、位置不再等权。
-- 部分像素装饰加入轻微 floating animation。
-- 修复 `.pixel-flower` / `.pixel-spark` 的全局 `display: block` 覆盖 Tailwind `hidden` 的问题。
-- 首页 body 背景增加蓝色兜底，避免 headless 或特殊 viewport 下出现白边。
+- `next.config.mjs` — 添加 rehype-highlight 插件
+- `package.json` — 新增 rehype-highlight、@vercel/analytics
+- `src/app/globals.css` — 添加 highlight.js 深/浅色代码主题
+- `src/mdx-components.tsx` — 代码块适配 rehype-highlight 输出
+- `src/app/layout.tsx` — RSS link、Analytics 组件、OG 图片格式修正
+- `src/app/feed.xml/route.ts` — 新增 RSS 路由
+- `src/app/sitemap.ts` — 添加 feed.xml 条目
+- `src/app/blog/page.tsx` — 支持 `?tag=` 查询参数
+- `src/app/blog/blog-list.tsx` — 支持 initialTag 属性与标签筛选状态
+- `src/app/blog/[slug]/page.tsx` — 标签链接、上一篇/下一篇导航
+- `src/components/blog-card.tsx` — 标签改为可点击链接
+- `src/app/resources/page.tsx` — 支持 `?tag=` 查询参数
+- `src/app/resources/resource-grid.tsx` — 支持 initialTag 属性
+- `src/components/resource-card.tsx` — 标签改为可点击链接
+- `src/app/projects/[slug]/page.tsx` — 描述正文、GitHub/Demo 按钮、截图图库
+- `src/data/posts.ts` — 添加 getAdjacentPosts()、所有文章封面图
+- `src/data/projects.ts` — 扩展 Project 类型、3 个项目增加描述和链接
+- `public/blog/*.svg` — 9 篇博客封面图
+- `public/projects/*.svg` — 6 个项目封面图
+- `public/og-image.svg` — 新增 OG 社交分享图
+- `CODEX_HANDOFF.md` — 本文档
 
 ## 5. 项目目录结构
 
@@ -89,12 +96,19 @@
 ├── tsconfig.json
 ├── next-env.d.ts
 ├── public/
+│   ├── og-image.svg
+│   ├── blog/
+│   │   └── *.svg              # 博客封面图 (9 篇)
 │   └── projects/
+│       └── *.svg              # 项目封面图 (6 个)
 └── src/
     ├── app/
     │   ├── layout.tsx
     │   ├── page.tsx
     │   ├── globals.css
+    │   ├── not-found.tsx
+    │   ├── robots.ts
+    │   ├── sitemap.ts
     │   ├── about/
     │   │   ├── page.tsx
     │   │   └── about-content.tsx
@@ -102,6 +116,8 @@
     │   │   ├── page.tsx
     │   │   ├── blog-list.tsx
     │   │   └── [slug]/page.tsx
+    │   ├── feed.xml/
+    │   │   └── route.ts        # RSS 2.0 路由
     │   ├── projects/
     │   │   ├── page.tsx
     │   │   └── [slug]/page.tsx
@@ -109,6 +125,7 @@
     │       ├── page.tsx
     │       └── resource-grid.tsx
     ├── components/
+    │   ├── back-to-top.tsx
     │   ├── hero-section.tsx
     │   ├── site-header.tsx
     │   ├── pixel-decor.tsx
@@ -116,14 +133,23 @@
     │   ├── project-card.tsx
     │   ├── blog-card.tsx
     │   ├── resource-card.tsx
+    │   ├── reading-progress.tsx
+    │   ├── table-of-contents.tsx
+    │   ├── theme-provider.tsx
+    │   ├── theme-toggle.tsx
     │   ├── timeline.tsx
     │   └── placeholder-page.tsx
+    ├── content/
+    │   └── blog/
+    │       └── getting-started-with-react.mdx
     ├── data/
     │   ├── projects.ts
     │   ├── posts.ts
     │   └── resources.ts
-    └── lib/
-        └── utils.ts
+    ├── lib/
+    │   ├── mdx.ts
+    │   └── utils.ts
+    └── mdx-components.tsx
 ```
 
 ## 6. 关键组件说明
@@ -314,18 +340,33 @@ npm run build
 
 ## 13. 后续迭代建议
 
-优先级从高到低：
+已完成（前次建议中已实现）：
 
-1. **自定义 404 页面**：新增 `src/app/not-found.tsx`，保持品牌视觉。
-2. **SEO 增强**：Open Graph、Twitter Card、站点 sitemap、JSON-LD。
-3. **MDX 迁移**：把 `posts.ts` 的 mock 内容迁移到 `.mdx`，支持代码块和数学公式。
-4. **搜索功能**：博客和资源页加入轻量客户端搜索，例如 Fuse.js。
-5. **移动端导航**：首页当前隐藏 pill nav，后续可做轻量菜单。
-6. **明暗交替**：增加一个亮暗更替按键，用户点击后就可以将主题修改为夜间/白天模式
-7.  **阅读体验**：博客详情页加入目录、阅读进度、返回顶部。
-8.  **部署后检查**：Vercel Preview 与 Production 都需要打开 `/`、`/blog`、`/projects`、`/resources`、`/about` 做冒烟检查。
-9. **资源和文章真实内容替换**：继续扩充 `src/data/posts.ts` 和 `src/data/resources.ts`。
-10. **图片资产**：为项目和博客添加 `public/` 下的封面图。
+1. ~~自定义 404 页面~~ → 已实现 `src/app/not-found.tsx`
+2. ~~SEO 增强~~ → 已实现 OG/Twitter Card、sitemap、JSON-LD
+3. ~~搜索功能~~ → 已实现客户端文本搜索
+4. ~~移动端导航~~ → 已实现汉堡菜单 + 动画面板
+5. ~~明暗交替~~ → 已实现 ThemeToggle + localStorage 持久化
+6. ~~阅读体验~~ → 已实现目录、阅读进度、返回顶部
+7. ~~图片资产~~ → 已添加 SVG 封面图
+8. ~~MDX 迁移（启动）~~ → 已创建 1 篇 MDX、自定义组件、mdx.ts 加载器
+9. ~~代码语法高亮~~ → 已集成 rehype-highlight
+10. ~~RSS feed~~ → 已实现 /feed.xml
+11. ~~标签可点击~~ → 已实现 ?tag=X 参数筛选
+12. ~~文章导航~~ → 已实现上一篇/下一篇
+13. ~~项目详情增强~~ → 已实现描述正文、链接、截图
+14. ~~分析统计~~ → 已集成 Vercel Analytics
+
+待推进事项（优先级从高到低）：
+
+1. **博客内容 MDX 全量迁移**：将 posts.ts 中剩余 8 篇文章的 sections 迁移为独立 .mdx 文件。
+2. **自动 MDX 发现**：替换 `src/lib/mdx.ts` 中手动注册表为 build-time glob 自动发现。
+3. **数学公式支持**：MDX 集成 KaTeX 或 MathJax（AI/ML 文章需要）。
+4. **标签聚合页**：`/blog/tags` 和 `/resources/tags` 展示所有标签及其文章数。
+5. **评论区**：集成 Giscus 或 Disqus（可选，个人博客不一定需要）。
+6. **图片优化**：将 SVG 封面图替换为实际截图和设计稿。
+7. **测试**：添加基本的 E2E 测试（Playwright）。
+8. **资源和文章真实内容替换**：继续扩充 `src/data/posts.ts` 和 `src/data/resources.ts`。
 
 ## 14. 快速接手入口
 
@@ -334,11 +375,14 @@ npm run build
 1. `package.json`
 2. `src/app/layout.tsx`
 3. `src/app/globals.css`
-4. `src/components/site-header.tsx`
-5. `src/components/hero-section.tsx`
-6. `src/data/projects.ts`
-7. `src/data/posts.ts`
-8. `src/data/resources.ts`
-9. 对应要修改的页面目录
+4. `next.config.mjs`
+5. `src/mdx-components.tsx`
+6. `src/lib/mdx.ts`
+7. `src/components/site-header.tsx`
+8. `src/components/hero-section.tsx`
+9. `src/data/projects.ts`
+10. `src/data/posts.ts`
+11. `src/data/resources.ts`
+12. 对应要修改的页面目录
 
-当前最值得继续投入的方向是：SEO、MDX、搜索、404、移动端导航。
+当前最值得继续投入的方向是：MDX 全量迁移、数学公式支持、自动 MDX 发现、标签聚合页。
