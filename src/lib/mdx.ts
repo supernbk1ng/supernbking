@@ -44,21 +44,16 @@ export function getMdxSlugs(): string[] {
   }
 }
 
-// Static import map for MDX components.
-// Add an entry for each new .mdx file in src/content/blog/.
-const mdxLoaders: Record<
-  string,
-  () => Promise<{ default: React.ComponentType }>
-> = {
-  "getting-started-with-react": () =>
-    import("@/content/blog/getting-started-with-react.mdx")
-};
-
 export async function getMdxComponent(
   slug: string
 ): Promise<React.ComponentType | null> {
-  const loader = mdxLoaders[slug];
-  if (!loader) return null;
-  const mod = await loader();
-  return mod.default;
+  const slugs = getMdxSlugs();
+  if (!slugs.includes(slug)) return null;
+
+  try {
+    const mod = await import(`@/content/blog/${slug}.mdx`);
+    return mod.default;
+  } catch {
+    return null;
+  }
 }

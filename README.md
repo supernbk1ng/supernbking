@@ -64,6 +64,9 @@ learning resources.
 
 ### Adding a Blog Post (MDX — recommended)
 
+**Quick start:** `npm run new-post -- "My Post Title" [slug]`
+
+Or manually:
 1. Create a new `.mdx` file in `src/content/blog/`:
    ```
    src/content/blog/my-new-post.mdx
@@ -86,15 +89,7 @@ learning resources.
 
 3. Write the post body in Markdown below the `---` line.
 
-4. Register the MDX component in `src/lib/mdx.ts`:
-   ```ts
-   const mdxLoaders = {
-     // ... existing entries ...
-     "my-new-post": () => import("@/content/blog/my-new-post.mdx"),
-   };
-   ```
-
-5. Rebuild: `npm run build`. The post will appear in `/blog` automatically.
+4. Rebuild: `npm run build`. The post is auto-discovered — no import registration needed.
 
 ### Adding a Blog Post (TypeScript — legacy)
 
@@ -171,13 +166,11 @@ To migrate an existing post from TypeScript to MDX:
 
 1. Create the `.mdx` file with frontmatter matching the original post's metadata
 2. Rewrite the `sections` array as Markdown headings and paragraphs
-3. Register the component in `src/lib/mdx.ts`
-4. Remove the post from `mockPosts` in `src/data/posts.ts`
+3. Remove the post from `mockPosts` in `src/data/posts.ts`
 
 Future enhancements (not yet implemented):
 - **Code syntax highlighting**: Install `rehype-highlight` or `prism-react-renderer`, update `src/mdx-components.tsx`
 - **Math formulas**: Install `remark-math` + `rehype-katex`, add KaTeX stylesheet to layout
-- **Dynamic MDX loading**: Replace the static import map with a build-time registry for automatic slug→component resolution
 - **Full MDX migration**: Move all posts to `.mdx`, deprecate `mockPosts`
 
 ## Local Commands
